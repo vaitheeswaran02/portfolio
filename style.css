@@ -555,22 +555,7 @@ textarea {
 /* Yellow accent line */
 
 .photo-frame::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    bottom: 0;
-
-    width: 100%;
-
-    height: 6px;
-
-    background: var(--mustard);
-
-    z-index: 2;
+    display: none;
 }
 
 
@@ -578,9 +563,9 @@ textarea {
 
 .profile-image {
 
-    width: 78%;
+    width: 420px;
 
-    height: 92%;
+    height: 420px;
 
     object-fit: cover;
 
@@ -590,7 +575,17 @@ textarea {
 
     position: relative;
 
-    z-index: 1;
+    z-index: 3;
+
+    border-radius: 50%;
+
+    border: 6px solid var(--white);
+
+    box-shadow:
+        0 0 0 6px var(--mustard),
+        0 20px 45px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(-35px);
 }
 
 
@@ -1068,6 +1063,413 @@ textarea {
 
     margin-top: 20px;
 }
+
+/* =========================================================
+   CERTIFICATE SLIDER
+========================================================= */
+
+.certificate-slider-wrapper {
+
+    position: relative;
+
+    margin-top: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   SLIDER VIEWPORT
+========================================================= */
+
+.certificate-slider {
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.certificate-track {
+
+    display: flex;
+
+    gap: 20px;
+
+    width: max-comtent;
+    will-change: transform;
+}
+
+
+/* =========================================================
+   CERTIFICATE CARD
+========================================================= */
+
+.certificate-slider .certificate-card {
+
+    flex: 0 0 calc(
+        (100% - 40px) / 3
+    );
+
+    min-width: calc(
+        (100% - 40px) / 3
+    );
+
+    margin: 0;
+
+    background: var(--white);
+
+    border: 1px solid var(--line);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.certificate-slider .certificate-card:hover {
+
+    transform: translateY(-6px);
+
+    border-color: var(--mustard);
+
+    box-shadow:
+        0 15px 30px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CERTIFICATE IMAGE
+========================================================= */
+
+.certificate-slider .certificate-preview {
+
+    position: relative;
+
+    display: block;
+
+    aspect-ratio: 1.4 / 1;
+
+    overflow: hidden;
+
+    background: var(--light-gray);
+
+    border-bottom: 3px solid var(--mustard);
+}
+
+
+.certificate-slider .certificate-preview img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.certificate-slider
+.certificate-card:hover
+.certificate-preview img {
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   VIEW OVERLAY
+========================================================= */
+
+.certificate-view {
+
+    position: absolute;
+
+    right: 15px;
+
+    bottom: 15px;
+
+    padding: 8px 12px;
+
+    background: var(--mustard);
+
+    color: var(--charcoal);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    opacity: 0;
+
+    transform: translateY(5px);
+
+    transition: all 0.3s ease;
+}
+
+
+.certificate-card:hover
+.certificate-view {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   CERTIFICATE INFO
+========================================================= */
+
+.certificate-slider .certificate-info {
+
+    padding: 24px;
+}
+
+
+.certificate-slider
+.certificate-info > span {
+
+    font-size: 10px;
+
+    color: var(--mustard-dark);
+
+    font-weight: 700;
+}
+
+
+.certificate-slider
+.certificate-info h3 {
+
+    margin-top: 12px;
+
+    font-size: 20px;
+
+    line-height: 1.15;
+
+    color: var(--charcoal);
+}
+
+
+.certificate-slider
+.certificate-info p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 7px;
+}
+
+
+.certificate-slider
+.certificate-info .text-link {
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+.certificate-slider-btn {
+
+    flex-shrink: 0;
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--mustard);
+
+    background: transparent;
+
+    color: var(--mustard-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    z-index: 10;
+}
+
+
+.certificate-slider-btn:hover {
+
+    background: var(--mustard);
+
+    color: var(--charcoal);
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.certificate-dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 35px;
+}
+
+
+.certificate-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #C5C4BE;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.certificate-dot.active {
+
+    width: 28px;
+
+    border-radius: 20px;
+
+    background: var(--mustard);
+}
+
+
+/* =========================================================
+   TABLET - 2 CARDS
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .certificate-slider
+    .certificate-card {
+
+        flex: 0 0 calc(
+            (100% - 20px) / 2
+        );
+
+        min-width: calc(
+            (100% - 20px) / 2
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE - 1 CARD
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .certificate-slider-wrapper {
+
+        gap: 10px;
+
+    }
+
+
+    .certificate-slider
+    .certificate-card {
+
+        flex: 0 0 100%;
+
+        min-width: 100%;
+
+    }
+
+
+    .certificate-slider-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 17px;
+
+    }
+
+
+    .certificate-dots {
+
+        margin-top: 25px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .certificate-slider-wrapper {
+
+        gap: 5px;
+
+    }
+
+
+    .certificate-slider-btn {
+
+        width: 35px;
+
+        height: 35px;
+
+        font-size: 15px;
+
+    }
+
+}
+
 
 
 /* =========================================================
@@ -1562,9 +1964,17 @@ footer a:hover {
 
     .profile-image {
 
-        width: 85%;
+        width: 300px;
 
-        height: 90%;
+        height: 300px;
+
+        border-width: 5px;
+
+        box-shadow:
+            0 0 0 5px var(--mustard),
+            0 15px 30px rgba(0, 0, 0, 0.25);
+
+        transform: translateY(-25px);
 
     }
 
@@ -1654,6 +2064,427 @@ footer a:hover {
         width: 38px;
 
         height: 38px;
+
+    }
+
+}
+
+/* =========================================================
+   PROJECT SLIDER - FIXED VERSION
+========================================================= */
+
+.project-slider-wrapper {
+    position: relative;
+    margin-top: 70px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* Slider window */
+
+.project-slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* Moving track */
+
+.project-track {
+    display: flex;
+    gap: 20px;
+
+     width: max-content;
+     will-change: transform;
+}
+
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project-slider .project-card {
+
+    /* 3 cards on desktop */
+
+    flex: 0 0 calc(
+        (100% - 40px) / 3
+    );
+
+    min-width: calc(
+        (100% - 40px) / 3
+    );
+
+    margin: 0;
+
+    min-height: 450px;
+
+    padding: 32px;
+
+    border: 1px solid var(--dark-line);
+
+    background: var(--charcoal);
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Hover */
+
+.project-slider .project-card:hover {
+
+    background: var(--dark-card);
+
+    border-color: var(--mustard);
+
+    transform: translateY(-5px);
+
+}
+
+
+/* =========================================================
+   PROJECT TOP
+========================================================= */
+
+.project-slider .project-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #888888;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.12em;
+}
+
+
+.project-slider .project-top span:last-child {
+
+    color: var(--mustard);
+
+}
+
+
+/* =========================================================
+   PROJECT TITLE
+========================================================= */
+
+.project-slider .project-card h3 {
+
+    font-size: clamp(
+        23px,
+        2.2vw,
+        30px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -0.04em;
+
+    margin-top: 55px;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.project-slider .project-card p {
+
+    color: #aaaaaa;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-top: 18px;
+
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.project-slider .tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 24px;
+
+}
+
+
+.project-slider .tags span {
+
+    padding: 6px 10px;
+
+    border: 1px solid var(--mustard);
+
+    border-radius: 999px;
+
+    color: var(--mustard);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   PROJECT LINK
+========================================================= */
+
+.project-slider .project-link {
+
+    margin-top: auto;
+
+    padding-top: 30px;
+
+    color: var(--mustard);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.15em;
+
+}
+
+
+.project-slider .project-link:hover {
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+.slider-btn {
+
+    flex-shrink: 0;
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--mustard);
+
+    background: transparent;
+
+    color: var(--mustard);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    z-index: 10;
+}
+
+
+.slider-btn:hover {
+
+    background: var(--mustard);
+
+    color: var(--charcoal);
+
+    transform: scale(1.08);
+
+}
+
+
+/*
+   IMPORTANT:
+   Don't disable the arrows.
+*/
+
+.slider-btn:disabled {
+
+    opacity: 1;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   DOTS
+========================================================= */
+
+.slider-dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 35px;
+
+}
+
+
+.slider-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #555555;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+}
+
+
+.slider-dot.active {
+
+    width: 28px;
+
+    border-radius: 20px;
+
+    background: var(--mustard);
+
+}
+
+
+/* =========================================================
+   TABLET - 2 CARDS
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .project-slider .project-card {
+
+        flex: 0 0 calc(
+            (100% - 20px) / 2
+        );
+
+        min-width: calc(
+            (100% - 20px) / 2
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE - 1 CARD
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .project-slider-wrapper {
+
+        gap: 10px;
+
+    }
+
+
+    .project-slider .project-card {
+
+        flex: 0 0 100%;
+
+        min-width: 100%;
+
+        min-height: 360px;
+
+        padding: 25px;
+
+    }
+
+
+    .project-slider .project-card h3 {
+
+        margin-top: 45px;
+
+        font-size: 30px;
+
+    }
+
+
+    .slider-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 17px;
+
+    }
+
+
+    .slider-dots {
+
+        margin-top: 25px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .slider-btn {
+
+        width: 35px;
+
+        height: 35px;
+
+        font-size: 15px;
 
     }
 
