@@ -7,6 +7,7 @@ const certificates = [
     issuer: "NPTEL",
     image: "/certificates/certificate1.jpeg",
     pdf: "/certificates/certificate1.pdf",
+    
   },
   {
     
@@ -14,6 +15,7 @@ const certificates = [
     issuer: "Add Certificate Issuer",
     image: "/certificates/certificate2.jpeg",
     pdf: "/certificates/certificate2.pdf",
+    
   },
   {
    
