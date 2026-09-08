@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 function Footer() {
+  
   return (
     <Box
       component="footer"
@@ -23,6 +24,7 @@ function Footer() {
         },
       }}
     >
+      
       <Typography
         sx={{
           color: "#D4A017",
