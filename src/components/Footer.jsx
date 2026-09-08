@@ -30,7 +30,7 @@ function Footer() {
           fontSize: "18px",
         }}
       >
-        VΛ
+        Vaithesh
       </Typography>
 
       <Typography fontSize="11px">

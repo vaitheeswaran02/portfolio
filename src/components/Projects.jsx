@@ -19,7 +19,7 @@ const projects = [
     
     title: "RFID Smart Attendance System",
 
-    image: "/assets/project1.png",
+    image: "/assets/project4.jpeg",
 
     techStack:
       "ESP32, MFRC522 RFID Reader, Python, PySerial, I2C LCD, Microsoft Excel",
@@ -38,7 +38,7 @@ const projects = [
     
     title: "Car Price Prediction",
 
-    image: "/assets/project2.jpeg",
+    image: "/assets/project3.png",
 
     techStack:
       "Python, Machine Learning, Random Forest, Linear Regression, Streamlit",
@@ -57,7 +57,7 @@ const projects = [
     
     title: "Credict Card Fraud Detection",
 
-    image: "/assets/project3.png",
+    image: "/assets/project2.png",
 
     techStack:
       "Python, Machine Learning, Random Forest, Logistic Regression, Streamlit",

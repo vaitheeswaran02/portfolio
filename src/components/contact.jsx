@@ -9,8 +9,24 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
-//import Lottie from "lottie-react";
-//import contactAnimation from "../assets/animation.json";
+import { Lottie } from "lottie-react";
+import contactAnimation from "../assets/animation.json";
+
+const socialButtonSx = {
+  width: 90,
+  height: 42,
+  color: "#FFFFFF",
+  border: "1px solid #555555",
+  borderRadius: "30px",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    color: "#FFFFFF",
+    backgroundColor: "#D4A017",
+    borderColor: "#D4A017",
+    transform: "translateY(-5px)",
+    boxShadow: "0 8px 20px rgba(212,160,23,0.25)",
+  },
+};
 
 function Contact() {
   return (
@@ -18,8 +34,11 @@ function Contact() {
       id="contact"
       sx={{
         background: "#252525",
-        color: "white",
-        py: { xs: 10, md: 15 },
+        color: "#FFFFFF",
+        py: {
+          xs: 10,
+          md: 15,
+        },
         overflow: "hidden",
       }}
     >
@@ -30,17 +49,6 @@ function Contact() {
           mx: "auto",
         }}
       >
-        {/* ================= HEADING ================= */}
-
-        <Typography
-          sx={{
-            color: "#D4A017",
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: "0.2em",
-          }}
-        />
-
         <Typography
           component="h2"
           sx={{
@@ -52,35 +60,26 @@ function Contact() {
             fontWeight: 800,
             lineHeight: 0.95,
             letterSpacing: "-0.06em",
-            color: "#FFFFFF",
           }}
         >
           Let's Connect
         </Typography>
 
-        {/* ================= CONTENT ================= */}
-
         <Box
           sx={{
             mt: 8,
-
             display: "grid",
-
             gridTemplateColumns: {
               xs: "1fr",
               md: "1fr 1fr",
             },
-
             gap: {
-              xs: 5,
+              xs: 6,
               md: 8,
             },
-
             alignItems: "center",
           }}
         >
-          {/* ================= LEFT SIDE ================= */}
-
           <Box>
             <Typography
               sx={{
@@ -88,21 +87,14 @@ function Contact() {
                   xs: 18,
                   md: 22,
                 },
-
                 lineHeight: 1.45,
-
                 maxWidth: 500,
-
                 mb: 5,
-
                 color: "#FFFFFF",
               }}
             >
-              Feel free to connect with me through
-              any of the platforms below.
+              Feel free to connect with me through any of the platforms below.
             </Typography>
-
-            {/* ================= SOCIAL ICONS ================= */}
 
             <Stack
               direction="row"
@@ -110,44 +102,16 @@ function Contact() {
               alignItems="center"
               flexWrap="wrap"
             >
-              {/* ================= GITHUB ================= */}
-
               <IconButton
                 component="a"
                 href="https://github.com/vaitheeswaran02"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                sx={{
-                  width: 90,
-                  height: 42,
-
-                  color: "#FFFFFF",
-
-                  border: "1px solid #555555",
-
-                  borderRadius: "30px",
-
-                  transition: "all 0.3s ease",
-
-                  "&:hover": {
-                    color: "#FFFFFF",
-
-                    backgroundColor: "#D4A017",
-
-                    borderColor: "#D4A017",
-
-                    transform: "translateY(-5px)",
-
-                    boxShadow:
-                      "0 8px 20px rgba(212,160,23,0.25)",
-                  },
-                }}
+                sx={socialButtonSx}
               >
                 <GitHubIcon fontSize="medium" />
               </IconButton>
-
-              {/* ================= LINKEDIN ================= */}
 
               <IconButton
                 component="a"
@@ -155,36 +119,10 @@ function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                sx={{
-                  width: 90,
-                  height: 42,
-
-                  color: "#FFFFFF",
-
-                  border: "1px solid #555555",
-
-                  borderRadius: "30px",
-
-                  transition: "all 0.3s ease",
-
-                  "&:hover": {
-                    color: "#FFFFFF",
-
-                    backgroundColor: "#D4A017",
-
-                    borderColor: "#D4A017",
-
-                    transform: "translateY(-5px)",
-
-                    boxShadow:
-                      "0 8px 20px rgba(212,160,23,0.25)",
-                  },
-                }}
+                sx={socialButtonSx}
               >
                 <LinkedInIcon fontSize="medium" />
               </IconButton>
-
-              {/* ================= WHATSAPP ================= */}
 
               <IconButton
                 component="a"
@@ -192,39 +130,57 @@ function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                sx={{
-                  width: 90,
-                  height: 42,
-
-                  color: "#FFFFFF",
-
-                  border: "1px solid #555555",
-
-                  borderRadius: "30px",
-
-                  transition: "all 0.3s ease",
-
-                  "&:hover": {
-                    color: "#FFFFFF",
-
-                    backgroundColor: "#D4A017",
-
-                    borderColor: "#D4A017",
-
-                    transform: "translateY(-5px)",
-
-                    boxShadow:
-                      "0 8px 20px rgba(212,160,23,0.25)",
-                  },
-                }}
+                sx={socialButtonSx}
               >
                 <WhatsAppIcon fontSize="medium" />
               </IconButton>
             </Stack>
           </Box>
 
-          {/* ================= RIGHT SIDE - LOTTIE ================= */}
-
+          <Box
+            sx={{
+              width: "100%",
+              minHeight: {
+                xs: 300,
+                sm: 370,
+                md: 480,
+              },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                width: {
+                  xs: 300,
+                  sm: 350,
+                  md: 450,
+                },
+                height: {
+                  xs: 300,
+                  sm: 400,
+                  md: 500,
+                },
+                maxWidth: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                
+              }}
+            >
+              <Lottie
+                src={contactAnimation}
+                loop
+                autoplay
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxWidth: "100%",
+                }}
+              />
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
