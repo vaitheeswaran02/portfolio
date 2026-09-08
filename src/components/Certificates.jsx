@@ -140,6 +140,7 @@ function CertificateCard({ certificate }) {
               background: "transparent",
             },
           }}
+          
         >
           View Certificate ↗
         </Button>
@@ -177,6 +178,7 @@ function Certificates() {
         overflow: "hidden",
       }}
     >
+      
       {/* HEADING */}
 
       <Box
@@ -218,6 +220,7 @@ function Certificates() {
           Certificates
         </Typography>
       </Box>
+      
 
       {/* MARQUEE */}
 
