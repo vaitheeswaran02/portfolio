@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   AppBar,
@@ -27,11 +27,49 @@ const links = [
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.getElementById(link.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries.find((entry) => entry.isIntersecting);
+
+        if (visibleSection) {
+          setActiveSection(visibleSection.target.id);
+        }
+      },
+      {
+        rootMargin: "-30% 0px -55% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const section = document.getElementById(id);
+
+    if (section) {
+      const navbarHeight = 80;
+      const position =
+        section.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight;
+
+      window.scrollTo({
+        top: position,
+        behavior: "smooth",
+      });
+
+      setActiveSection(id);
+    }
 
     setOpen(false);
   };
@@ -41,41 +79,26 @@ function Navbar() {
       position="fixed"
       elevation={0}
       sx={{
-        /* =========================================
-           TRANSPARENT GLASS NAVBAR
-        ========================================= */
-            backgroundColor: "rgba(244, 243, 239, 0.62)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            color: "#252525",
-            boxShadow: "none",
-            height: "70px",
-            justifyContent: "center",
-
+        backgroundColor: "rgba(244, 243, 239, 0.62)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        color: "#252525",
+        boxShadow: "none",
+        height: "70px",
+        justifyContent: "center",
       }}
-      
     >
       <Toolbar
         sx={{
           width: "92%",
-
           maxWidth: "1180px",
-
           mx: "auto",
-
           minHeight: "64px !important",
-
           height: "64px",
-
           px: "0 !important",
-
           justifyContent: "space-between",
         }}
       >
-        {/* =========================================
-            LOGO
-        ========================================= */}
-
         <Typography
           onClick={() => scrollToSection("home")}
           sx={{
@@ -83,17 +106,11 @@ function Navbar() {
               xs: "22px",
               md: "24px",
             },
-
             fontWeight: 800,
-
             letterSpacing: "-2px",
-
             color: "#252525",
-
             cursor: "pointer",
-
             transition: "all 0.3s ease",
-
             "&:hover": {
               color: "#D4A017",
             },
@@ -102,112 +119,74 @@ function Navbar() {
           VAITHESH
         </Typography>
 
-        {/* =========================================
-            DESKTOP NAVIGATION
-        ========================================= */}
-
+        {/* DESKTOP NAVIGATION */}
         <Box
           sx={{
             display: {
               xs: "none",
               md: "flex",
             },
-
             alignItems: "center",
-
             gap: 2.5,
           }}
         >
-          {links.map((link) => (
-            <Button
-              key={link.id}
-              onClick={() =>
-                scrollToSection(link.id)
-              }
-              variant={
-                link.id === "contact"
-                  ? "contained"
-                  : "text"
-              }
-              sx={{
-                minWidth:
-                  link.id === "contact"
-                    ? "120px"
-                    : "auto",
+          {links.map((link) => {
+            const isActive = activeSection === link.id;
+            const isContact = link.id === "contact";
 
-                height:
-                  link.id === "contact"
-                    ? "40px"
-                    : "36px",
-
-                px:
-                  link.id === "contact"
-                    ? 2.5
-                    : 1.5,
-
-                borderRadius:
-                  link.id === "contact"
-                    ? "22px"
-                    : "8px",
-
-                color:
-                  link.id === "contact"
-                    ? "#252525"
-                    : "#252525",
-
-                fontSize: "11px",
-
-                fontWeight:
-                  link.id === "contact"
-                    ? 700
-                    : 600,
-
-                letterSpacing: "0.06em",
-
-                textTransform: "uppercase",
-
-                backgroundColor:
-                  link.id === "contact"
-                    ? "#D4A017"
-                    : "transparent",
-
-                boxShadow:
-                  link.id === "contact"
+            return (
+              <Button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                sx={{
+                  minWidth: isContact ? "120px" : "auto",
+                  height: isContact ? "40px" : "36px",
+                  px: isContact ? 2.5 : 1.5,
+                  borderRadius: isContact ? "22px" : "8px",
+                  color: isContact
+                    ? isActive
+                      ? "#FFFFFF"
+                      : "#252525"
+                    : isActive
+                      ? "#A87900"
+                      : "#252525",
+                  fontSize: "11px",
+                  fontWeight: isContact ? 700 : 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  backgroundColor: isContact
+                    ? isActive
+                      ? "#A87900"
+                      : "#D4A017"
+                    : isActive
+                      ? "rgba(212,160,23,0.12)"
+                      : "transparent",
+                  borderBottom: !isContact && isActive
+                    ? "2px solid #D4A017"
+                    : "2px solid transparent",
+                  boxShadow: isContact
                     ? "0 3px 8px rgba(212,160,23,0.18)"
                     : "none",
-
-                transition: "all 0.3s ease",
-
-                "&:hover": {
-                  backgroundColor:
-                    link.id === "contact"
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: isContact
                       ? "#A87900"
                       : "rgba(212,160,23,0.08)",
-
-                  color:
-                    link.id === "contact"
-                      ? "#FFFFFF"
-                      : "#A87900",
-
-                  transform:
-                    "translateY(-1px)",
-
-                  boxShadow:
-                    link.id === "contact"
+                    color: isContact ? "#FFFFFF" : "#A87900",
+                    transform: "translateY(-1px)",
+                    boxShadow: isContact
                       ? "0 5px 12px rgba(212,160,23,0.25)"
                       : "none",
-                },
-              }}
-            >
-              {link.name}
-            </Button>
-          ))}
+                  },
+                }}
+              >
+                {link.name}
+              </Button>
+            );
+          })}
         </Box>
 
-        {/* =========================================
-            MOBILE MENU BUTTON
-        ========================================= */}
-
+        {/* MOBILE MENU BUTTON */}
         <IconButton
           onClick={() => setOpen(true)}
           aria-label="Open navigation menu"
@@ -216,22 +195,13 @@ function Navbar() {
               xs: "flex",
               md: "none",
             },
-
             color: "#252525",
-
             width: "40px",
-
             height: "40px",
-
             borderRadius: "50%",
-
-            transition: "all 0.3s ease",
-
             "&:hover": {
               color: "#D4A017",
-
-              backgroundColor:
-                "rgba(212,160,23,0.08)",
+              backgroundColor: "rgba(212,160,23,0.08)",
             },
           }}
         >
@@ -239,10 +209,7 @@ function Navbar() {
         </IconButton>
       </Toolbar>
 
-      {/* =========================================
-          MOBILE DRAWER
-      ========================================= */}
-
+      {/* MOBILE DRAWER */}
       <Drawer
         anchor="right"
         open={open}
@@ -253,32 +220,17 @@ function Navbar() {
               xs: "280px",
               sm: "320px",
             },
-
-            backgroundColor:
-              "rgba(244,243,239,0.96)",
-
+            backgroundColor: "rgba(244,243,239,0.96)",
             backdropFilter: "blur(15px)",
-
-            WebkitBackdropFilter:
-              "blur(15px)",
+            WebkitBackdropFilter: "blur(15px)",
           },
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-
-            p: 2,
-          }}
-        >
-          {/* CLOSE BUTTON */}
-
+        <Box sx={{ width: "100%", p: 2 }}>
           <Box
             sx={{
               display: "flex",
-
               justifyContent: "flex-end",
-
               mb: 1,
             }}
           >
@@ -287,12 +239,9 @@ function Navbar() {
               aria-label="Close navigation menu"
               sx={{
                 color: "#252525",
-
                 "&:hover": {
                   color: "#D4A017",
-
-                  backgroundColor:
-                    "rgba(212,160,23,0.08)",
+                  backgroundColor: "rgba(212,160,23,0.08)",
                 },
               }}
             >
@@ -300,53 +249,47 @@ function Navbar() {
             </IconButton>
           </Box>
 
-          {/* MOBILE LINKS */}
-
           <List>
-            {links.map((link) => (
-              <ListItem
-                key={link.id}
-                disablePadding
-                sx={{
-                  mb: 0.5,
-                }}
-              >
-                <ListItemButton
-                  onClick={() =>
-                    scrollToSection(link.id)
-                  }
-                  sx={{
-                    borderRadius: "10px",
+            {links.map((link) => {
+              const isActive = activeSection === link.id;
 
-                    py: 1.3,
-
-                    transition:
-                      "all 0.25s ease",
-
-                    "&:hover": {
-                      backgroundColor:
-                        "rgba(212,160,23,0.08)",
-
-                      color: "#A87900",
-
-                      transform:
-                        "translateX(4px)",
-                    },
-                  }}
+              return (
+                <ListItem
+                  key={link.id}
+                  disablePadding
+                  sx={{ mb: 0.5 }}
                 >
-                  <ListItemText
-                    primary={link.name}
-                    primaryTypographyProps={{
-                      fontSize: "14px",
-
-                      fontWeight: 600,
-
-                      letterSpacing: "0.04em",
+                  <ListItemButton
+                    onClick={() => scrollToSection(link.id)}
+                    sx={{
+                      borderRadius: "10px",
+                      py: 1.3,
+                      color: isActive ? "#A87900" : "#252525",
+                      backgroundColor: isActive
+                        ? "rgba(212,160,23,0.12)"
+                        : "transparent",
+                      borderLeft: isActive
+                        ? "3px solid #D4A017"
+                        : "3px solid transparent",
+                      "&:hover": {
+                        backgroundColor: "rgba(212,160,23,0.08)",
+                        color: "#A87900",
+                        transform: "translateX(4px)",
+                      },
                     }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
+                  >
+                    <ListItemText
+                      primary={link.name}
+                      primaryTypographyProps={{
+                        fontSize: "14px",
+                        fontWeight: isActive ? 700 : 600,
+                        letterSpacing: "0.04em",
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
           </List>
         </Box>
       </Drawer>
@@ -355,4 +298,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

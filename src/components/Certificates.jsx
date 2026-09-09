@@ -13,7 +13,7 @@ const certificates = [
   },
   {
    
-    title: "ui ux design",
+    title: "ui/ux design",
     issuer: "Great Learning",
     image: "/certificates/certificate3.jpeg",
     pdf: "https://github.com/vaitheeswaran02",
