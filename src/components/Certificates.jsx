@@ -1,42 +1,36 @@
 import { Box, Typography, Card, CardMedia, CardContent, Button } from "@mui/material";
 
 const certificates = [
+  
   {
     
-    title: "Python Programming",
-    issuer: "NPTEL",
-    image: "/certificates/certificate1.jpeg",
-    pdf: "/certificates/certificate1.pdf",
-    
-  },
-  {
-    
-    title: "Web Development",
-    issuer: "Add Certificate Issuer",
+    title: "oracle cloud infrastructure foundation",
+    issuer: "oracle",
     image: "/certificates/certificate2.jpeg",
-    pdf: "/certificates/certificate2.pdf",
+    pdf: "https:/github.com/vaitheeswaran02",
+
     
   },
   {
    
-    title: "Machine Learning",
-    issuer: "Add Certificate Issuer",
+    title: "ui ux design",
+    issuer: "Great Learning",
     image: "/certificates/certificate3.jpeg",
-    pdf: "/certificates/certificate3.pdf",
+    pdf: "https:/github.com/vaitheeswaran02",
   },
   {
    
-    title: "Java Programming",
-    issuer: "Add Certificate Issuer",
+    title: "HTML, CSS",
+    issuer: "Coursera",
     image: "/certificates/certificate4.jpg",
-    pdf: "/certificates/certificate4.pdf",
+    pdf: "https:/github.com/vaitheeswaran02",
   },
   {
    
-    title: "AI / Data Science",
-    issuer: "Add Certificate Issuer",
+    title: "prompt engineering",
+    issuer: "IBM",
     image: "/certificates/certificate5.jpeg",
-    pdf: "/certificates/certificate5.pdf",
+    pdf: "https:/github.com/vaitheeswaran02",
   },
 ];
 
