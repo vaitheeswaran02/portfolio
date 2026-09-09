@@ -10,7 +10,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { Lottie } from "lottie-react";
-import contactAnimation from "../assets/animation.json";
+import contactAnimation from "../assets/Support.json";
 
 const socialButtonSx = {
   width: 90,
