@@ -21,7 +21,7 @@ const skills = [
   {
     number: "04",
     title: "Java Development",
-    description: "Object-oriented programming and software development.",
+    description: "Object-oriented programming and software development.", 
   },
   {
     number: "05",

@@ -7,7 +7,7 @@ const certificates = [
     title: "oracle cloud infrastructure foundation",
     issuer: "oracle",
     image: "/certificates/certificate2.jpeg",
-    pdf: "https:/github.com/vaitheeswaran02",
+    pdf: "https://github.com/vaitheeswaran02",
 
     
   },
@@ -16,21 +16,21 @@ const certificates = [
     title: "ui ux design",
     issuer: "Great Learning",
     image: "/certificates/certificate3.jpeg",
-    pdf: "https:/github.com/vaitheeswaran02",
+    pdf: "https://github.com/vaitheeswaran02",
   },
   {
    
     title: "HTML, CSS",
     issuer: "Coursera",
     image: "/certificates/certificate4.jpg",
-    pdf: "https:/github.com/vaitheeswaran02",
+    pdf: "https://github.com/vaitheeswaran02",
   },
   {
    
     title: "prompt engineering",
     issuer: "IBM",
     image: "/certificates/certificate5.jpeg",
-    pdf: "https:/github.com/vaitheeswaran02",
+    pdf: "https://github.com/vaitheeswaran02",
   },
 ];
 
